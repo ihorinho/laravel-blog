@@ -1,87 +1,32 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('main')
 
-        <title>Laravel</title>
+@section('title', '| Contact')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Contact page
-                </div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Contact Me</h1>
+        <hr>
+        <form>
+            <div class="form-group">
+                <label name="email">Email:</label>
+                <input id="email" name="email" class="form-control">
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="form-group">
+                <label name="subject">Subject:</label>
+                <input id="subject" name="subject" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label name="message">Message:</label>
+                <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
+            </div>
+
+            <input type="submit" value="Send Message" class="btn btn-success">
+        </form>
+    </div>
+</div>
+
+@endsection

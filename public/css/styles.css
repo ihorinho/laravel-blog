@@ -1,0 +1,5 @@
+/* Form styles */
+#create-post-form input[type="submit"]{margin-top: 10px }
+
+/* Footer Styles */
+.footer-copyrights{text-align: center;}

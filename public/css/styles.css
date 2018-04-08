@@ -1,5 +1,33 @@
+/* Main */
+body > .container {margin-top: 20px;}
+
 /* Form styles */
 #create-post-form input[type="submit"]{margin-top: 10px }
 
 /* Footer Styles */
 .footer-copyrights{text-align: center;}
+.footer {
+    margin-top: 25px;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+.footer > .container {
+    padding: 60px 15px 0;
+}
+
+
+/* Posts index */
+td .actions{min-width: 65px;}
+.posts-index-page .btn-edit{margin-top: 10px;}
+.btn-action{width: 100%;}
+
+@media(min-width: 768px) {
+    td.created {min-width: 110px}
+    td.title {min-width: 175px}
+}
+
+/* Post edit */
+.posts-edit-page .input-top-spacing{margin-top: 20px;}

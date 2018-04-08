@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Session;
 
 class PostController extends Controller
 {
@@ -14,7 +15,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        switch (request()->input("sort_by")) {
+            case "id" : $posts = Post::orderBy("id", "desc")->paginate(10); break;
+
+            case "updated" : $posts = Post::orderBy("updated_at", "desc")->paginate(10); break;
+
+            default : $posts = Post::paginate(10);
+        } 
+
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -48,8 +57,9 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->body = $request->body;
-
         $post->save();
+
+        Session::flash("success", "Post has been successfully created!");
 
         // redirect 
         return redirect()->route('posts.show', $post->id);
@@ -63,7 +73,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.show')->withPost($post);
     }
 
     /**
@@ -74,7 +86,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.edit')->withPost($post);
     }
 
     /**
@@ -86,7 +100,25 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate the data
+        $this->validate(
+            $request,
+            array(
+                'title' => 'required|max:255',
+                'body'  => 'required',
+            )
+        );    
+
+        //Uodate data in DB
+        $post = Post::find($id);
+        $post->title = $request->input("title");
+        $post->body = $request->input("body");
+        $post->save();
+
+        //Redirect to show post page
+        Session::flash("success", "Post has been successfully updated!");
+
+        return redirect()->route("posts.show", $post->id);
     }
 
     /**
@@ -97,6 +129,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        Session::flash("success", "Post successfully deleted!");
+
+        return redirect()->route("posts.index");
     }
 }

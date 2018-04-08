@@ -1,2 +1,3 @@
-<hr />
-<h5 class="footer-copyrights">&copy;Copyrights 2018</h5>
+<footer class="footer footer-copyrights">
+    <span class="text-muted">&copy;Copyrights <i>I.Pelekhatyy</i> 2018</span>
+</footer>

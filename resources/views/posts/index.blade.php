@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
         <h1>All Posts</h1>
     </div>
-    <div class="col-md-2">
-        <a href="{{ route('posts.create')}}" class="btn btn-h1-spacing btn-primary btn-block">Create New Post</a>
+    <div class="col-md-3">
+        <a href="{{ route('posts.create')}}" class="btn btn-create-post btn-h1-spacing btn-primary btn-block">Create New Post</a>
     </div>   
 </div>
 
@@ -38,14 +38,14 @@
         </thead>
         <tbody>
             @foreach($posts as $post)
-            <tr>
+            <tr class="post-row" id="post-{{ $post->id }}">
                 <th scope="row">{{ $post->id }}</th>
                 <td class="title">{{ $post->title }}</td>
                 <td>{{ str_limit($post->body, 150) }}</td>
                 <td class="created">{{ date('M j, y', strtotime($post->created_at)) }}</td>
                 <td>
                     <div class="actions">                        
-                        <a class="btn btn-outline-dark btn-action btn-block" href="{{ route('posts.show', $post->id) }}">View</a>
+                        <a class="btn btn-outline-dark btn-action btn-block btn-view" href="{{ route('posts.show', $post->id) }}">View</a>
                         <a class="btn btn-outline-dark btn-action btn-edit" href="{{ route('posts.edit', $post->id) }}">Edit</a>
                     </div>
                 </td>
@@ -56,4 +56,14 @@
     <div class="text-center">{!! $posts->links() !!}</div>
 </div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){    
+        $('.container').on("click", ".post-row", function(){
+            window.location.href = window.location.origin + "/posts/" + $(this).attr("id").split("-")[1];            
+        });
+    });
+</script>
 @endsection

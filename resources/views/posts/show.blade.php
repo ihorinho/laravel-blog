@@ -30,6 +30,9 @@
                     {{ Form::submit("Delete", ["class" => "btn btn-danger btn-block"]) }}
                     {!! Form::close() !!}
                 </div>
+                <div class="col-md-12">
+                    {!! Html::linkRoute("posts.index", "<<< Back to All Posts", [], ["class" => "btn btn-outline-dark input-top-spacing btn-block"]) !!}
+                </div>
             </div>
         </div>
     </div>   

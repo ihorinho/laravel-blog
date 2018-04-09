@@ -25,9 +25,11 @@ td .actions{min-width: 65px;}
 .btn-action{width: 100%;}
 
 @media(min-width: 768px) {
+	.posts-index-page .btn-create-post{max-width: 160px;float: right;}
     td.created {min-width: 110px}
     td.title {min-width: 175px}
 }
 
 /* Post edit */
+.posts-show-page .input-top-spacing,
 .posts-edit-page .input-top-spacing{margin-top: 20px;}
